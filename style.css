@@ -84,17 +84,23 @@ img {
   align-items: center;
 }
 
-.logo {
+/* School Logo Styling */
+.school-logo {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), #159461);
-  color: var(--white);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 19px;
+  object-fit: contain; /* Agar logo circular / square hai to clean dikhega */
+  border-radius: 8px;   /* Agar circle chahiye to 50% kar sakte hain */
+  display: block;
 }
+
+/* Mobile responsive screen ke liye */
+@media (max-width: 560px) {
+  .school-logo {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 
 .brand strong {
   display: block;
