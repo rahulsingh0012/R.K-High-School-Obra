@@ -2,12 +2,12 @@
  * R.K. High School, Obra - Official Website Scripts
  * Features:
  * 1. Monet Palette Engine
- * 2. Mobile Responsive Navigation & Active Tab State
+ * 2. Mobile Responsive Navigation & Active State
  * 3. Animated Statistics Counters
  * 4. Gallery Lightbox Viewer
- * 5. Scroll to Top Engine
+ * 5. Scroll to Top Button
  * 6. Dynamic Current Year
- * 7. Unselected/Touch-Safe Star Rating Widget
+ * 7. Interactive Star Rating Widget (Touch-Safe Selection Fix)
  * 8. Real-time Firebase Firestore Reviews Feed
  * 9. Firebase Firestore Admission & Enquiry Form Submission
  */
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       menuToggle.innerHTML = isOpen ? "&#x2715;" : "&#9776;";
     });
 
-    // Switch active state explicitly upon clicking menu items
+    // Active link selection logic
     navLinks.forEach(link => {
       link.addEventListener("click", () => {
         navLinks.forEach(item => item.classList.remove("active"));
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // 7. Interactive Star Rating Widget (Starts Unselected & No Blue Highlight)
+  // 7. Interactive Star Rating Widget (Touch/Click selection disabled)
   const starWidget = document.querySelector("#starWidget");
   const ratingInput = document.querySelector("#selectedRating");
 
@@ -177,6 +177,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     stars.forEach(star => {
+      // Mobile tap par selection handle/blue highlight prevent karne ke liye
+      star.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+      });
+
       star.addEventListener("click", (e) => {
         e.preventDefault();
         const selected = Number(star.dataset.val);
